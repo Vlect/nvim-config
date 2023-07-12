@@ -44,14 +44,34 @@ vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<cr>", { silent = true })
 vim.keymap.set("n", "<leader>vpp", "<cmd>e ~/.dotfiles/nvim/.config/nvim/lua/theprimeagen/packer.lua<cr>");
 vim.keymap.set("n", "<leader>mr", "<cmd>cellularautomaton make_it_rain<cr>");
 
--- new cursor movement (the default arrow keys are used for resizing windows)
-vim.keymap.set({ "n", "v" }, "u", "k")
-vim.keymap.set({ "n", "v" }, "i", "l")
-vim.keymap.set({ "n", "v" }, "e", "j")
-vim.keymap.set({ "n", "v" }, "n", "h")
+local function map(mode, lhs, rhs, opts)
+    local options = { noremap = true, silent = true }
+    if opts then
+        options = vim.tbl_extend("force", options, opts)
+    end
+    vim.api.nvim_set_keymap(mode, lhs, rhs, options)
+end
 
--- Undo operations
-vim.keymap.set({ "n", "v" }, "l", "u")
--- Insert Key
-vim.keymap.set({ "n", "v" }, "k", "i")
-vim.keymap.set({ "n", "v" }, "K", "I")
+-- Vim for Colemak
+map('', 'n', 'j', {})
+map('', 'e', 'k', {})
+map('', 'i', 'l', {})
+map('', 'f', 'e', {})
+map('', 'k', 'n', {})
+map('', 'l', 'i', {})
+map('', 'K', 'N', {})
+map('', 'N', '5j', {})
+map('', 'E', '5k', {})
+map('', 'L', 'I', {})
+
+---- new cursor movement (the default arrow keys are used for resizing windows)
+--vim.keymap.set({ "n", "v" }, "u", "k")
+--vim.keymap.set({ "n", "v" }, "i", "l")
+--vim.keymap.set({ "n", "v" }, "e", "j")
+--vim.keymap.set({ "n", "v" }, "n", "h")
+--
+---- Undo operations
+--vim.keymap.set({ "n", "v" }, "l", "u")
+---- Insert Key
+--vim.keymap.set({ "n", "v" }, "k", "i")
+--vim.keymap.set({ "n", "v" }, "K", "I")
