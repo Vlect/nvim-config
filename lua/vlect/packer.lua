@@ -6,45 +6,47 @@ vim.cmd [[packadd packer.nvim]]
 return require('packer').startup(function(use)
     -- Packer can manage itself
     use 'wbthomason/packer.nvim'
-    
+
     use {
-      'nvim-telescope/telescope.nvim', tag = '0.1.4',
-    -- or                            , branch = '0.1.x',
-      requires = { {'nvim-lua/plenary.nvim'} }
+        'nvim-telescope/telescope.nvim', tag = '0.1.4',
+        -- or                            , branch = '0.1.x',
+        requires = { { 'nvim-lua/plenary.nvim' } }
     }
 
-    use({
-        'rose-pine/neovim',
-        as = 'rose-pine',
-        config = function()
-            vim.cmd('colorscheme rose-pine')
-        end
-    })
+    use "rebelot/kanagawa.nvim"
+
+    --use({
+    --    'rose-pine/neovim',
+    --    as = 'rose-pine',
+    --    config = function()
+    --        vim.cmd('colorscheme rose-pine')
+    --    end
+    --})
 
     use({
         "iamcco/markdown-preview.nvim",
         run = function() vim.fn["mkdp#util#install"]() end,
     })
---    use({
---        "iamcco/markdown-preview.nvim",
---        run = "cd app && npm install",
---        setup = function() vim.g.mkdp_filetypes = { "markdown" } end,
---        ft = { "markdown" },
---    })
+    --    use({
+    --        "iamcco/markdown-preview.nvim",
+    --        run = "cd app && npm install",
+    --        setup = function() vim.g.mkdp_filetypes = { "markdown" } end,
+    --        ft = { "markdown" },
+    --    })
 
---    use('godlygeek/tabular')
---    use('preservim/vim-markdown')
+    --    use('godlygeek/tabular')
+    --    use('preservim/vim-markdown')
     use('github/copilot.vim')
     use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' })
     use('nvim-treesitter/playground')
 
-    --use('theprimeagen/harpoon')
-    use "nvim-lua/plenary.nvim"
+    use "nvim-lua/plenary.nvim" -- don't forget to add this one if you don't have it yet!
     use {
         "ThePrimeagen/harpoon",
         branch = "harpoon2",
         requires = { { "nvim-lua/plenary.nvim" } }
     }
+
     use('mbbill/undotree')
     use('tpope/vim-fugitive')
     use {
@@ -69,5 +71,4 @@ return require('packer').startup(function(use)
             { 'rafamadriz/friendly-snippets' },
         }
     }
-
 end)
