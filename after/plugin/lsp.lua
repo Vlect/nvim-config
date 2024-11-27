@@ -11,11 +11,11 @@ end)
 
 require('mason').setup({})
 require('mason-lspconfig').setup({
-    ensure_installed = { 'tsserver', 'rust_analyzer' },
+    ensure_installed = { 'ts_ls', 'rust_analyzer' },
     handlers = {
         lsp.default_setup,
-        tsserver = function()
-            require('lspconfig').tsserver.setup({
+        ts_ls = function()
+            require('lspconfig').ts_ls.setup({
                 settings = {
                     completions = {
                         completeFunctionCalls = true
