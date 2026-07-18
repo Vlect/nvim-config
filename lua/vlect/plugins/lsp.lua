@@ -64,8 +64,9 @@ return {
           vim.keymap.set("n", "<leader>vrr", vim.lsp.buf.references, opts)
           vim.keymap.set("n", "<leader>vrn", vim.lsp.buf.rename, opts)
           vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, opts)
-          -- K (hover) is Colemak-remapped; nvim's default K still works when
-          -- the Colemak layer is off, otherwise use <leader>vk
+          -- Buffer-local K beats the global Colemak K->N remap, so hover
+          -- wins in LSP buffers (same behavior lsp-zero gave the old config)
+          vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
           vim.keymap.set("n", "<leader>vk", vim.lsp.buf.hover, opts)
         end,
       })
